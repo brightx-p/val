@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Journey • For Mama</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #FF6B8B;
+            --accent: #00CED1;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --text: #333333;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 0 0 10px 10px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+        }
+
+        /* Timeline */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            width: 45%;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            z-index: 2;
+        }
+
+        /* Memory Cards */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .memory-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .memory-image {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .memory-text {
+            padding: 25px;
+        }
+
+        .memory-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        /* Question Section */
+        .question-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            padding: 50px;
+            color: white;
+            text-align: center;
+            margin: 60px 0;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .question {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .option-btn.correct {
+            background: rgba(76, 175, 80, 0.8);
+            border-color: #4CAF50;
+        }
+
+        /* WhatsApp Section */
+        .whatsapp-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .whatsapp-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .whatsapp-icon {
+            font-size: 2.5rem;
+            color: #25D366;
+        }
+
+        .message-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        .message-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            color: var(--text);
+            padding: 18px 25px;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .message-btn:hover {
+            border-color: var(--accent);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-btn i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Decorative Elements */
+        .floating-element {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            opacity: 0.03;
+            z-index: -1;
+            animation: float 20s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            bottom: 15%;
+            right: 5%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(90deg); }
+            50% { transform: translate(0, 0) rotate(180deg); }
+            75% { transform: translate(-20px, 20px) rotate(270deg); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: #666;
+        }
+
+        .heart {
+            color: var(--secondary);
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline-container::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+            }
+            
+            .timeline-icon {
+                left: 30px;
+            }
+            
+            .question {
+                font-size: 1.5rem;
+            }
+            
+            .question-section {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Micro-interactions */
+        .click-effect {
+            animation: clickPop 0.3s ease;
+        }
+
+        @keyframes clickPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Our Journey Together</h1>
+            <p class="subtitle">A collection of moments that shaped us</p>
+            <div class="date-badge">
+                <i class="fas fa-calendar-alt"></i> Since 2025
+            </div>
+        </header>
+
+        <!-- Timeline -->
+        <div class="timeline-container">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">
+                        WAEC Lessons, 2025
+                    </h3>
+                    <p>That's where it all began. We started as classmates, then became close friends. I became your "big bro," looking out for you, making sure you were okay with everything.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3 style="color: var(--secondary); margin-bottom: 10px;">
+                        The Shift
+                    </h3>
+                    <p>Somewhere between the pick-up lines and laughter, between truth or dare sessions and late-night talks, friendship turned into something more beautiful.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3 style="color: var(--accent); margin-bottom: 10px;">
+                        Our Rituals
+                    </h3>
+                    <p>You sitting on my lap during lessons. Those shy smiles during truth or dare. The way your eyes would light up even when you tried to hide it.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Cards -->
+        <div class="memory-grid">
+            <div class="memory-card">
+                <div class="memory-image">
+                    💺
+                </div>
+                <div class="memory-text">
+                    <h3 class="memory-title">Favorite Spot</h3>
+                    <p>Your go-to position during lessons was always on my lap. It became our little thing.</p>
+                </div>
+            </div>
+
+            <div class="memory-card">
+                <div class="memory-image">
+                    😳
+                </div>
+                <div class="memory-text">
+                    <h3 class="memory-title">Truth or Dare</h3>
+                    <p>You were always the shy one, but that made every moment even more special.</p>
+                </div>
+            </div>
+
+            <div class="memory-card">
+                <div class="memory-image">
+                    💋
+                </div>
+                <div class="memory-text">
+                    <h3 class="memory-title">The First Kiss</h3>
+                    <p>That evening during lessons changed everything between us.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question Section -->
+        <div class="question-section">
+            <h2 class="question">Do you remember where we had our first kiss?</h2>
+            <p style="opacity: 0.9; margin-bottom: 30px; position: relative; z-index: 1;">
+                Think back to that special evening...
+            </p>
+            
+            <div class="options-grid">
+                <button class="option-btn" onclick="selectOption(this, false)">
+                    At my house
+                </button>
+                <button class="option-btn" onclick="selectOption(this, false)">
+                    In the car
+                </button>
+                <button class="option-btn" onclick="selectOption(this, true)" id="correctOption">
+                    During lessons
+                </button>
+                <button class="option-btn" onclick="selectOption(this, false)">
+                    On a phone call
+                </button>
+            </div>
+
+            <div id="answerReveal" style="display: none; margin-top: 30px; position: relative; z-index: 1;">
+                <div style="background: rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                    <p style="font-size: 1.2rem; margin-bottom: 10px;">
+                        <i class="fas fa-star"></i> Exactly right! <i class="fas fa-star"></i>
+                    </p>
+                    <p>
+                        It was during lessons. You were sitting on my lap that evening, and in that moment, 
+                        everything felt right. That kiss sealed what we both felt.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- WhatsApp Section -->
+        <div class="whatsapp-section">
+            <div class="whatsapp-header">
+                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                <h2 style="color: var(--dark);">Let's Continue The Conversation</h2>
+            </div>
+            
+            <p style="color: #666; margin-bottom: 30px;">
+                If these memories mean something to you too, send me a message:
+            </p>
+
+            <div class="message-buttons">
+                <button class="message-btn" onclick="sendMessage('I remember that evening perfectly 💕')">
+                    <i class="fas fa-heart"></i>
+                    <span>"I remember that evening perfectly"</span>
+                </button>
+                
+                <button class="message-btn" onclick="sendMessage('You got all the details right 😊')">
+                    <i class="fas fa-smile"></i>
+                    <span>"You remembered everything"</span>
+                </button>
+                
+                <button class="message-btn" onclick="sendMessage('Can we talk about this?')">
+                    <i class="fas fa-comment"></i>
+                    <span>"We need to talk"</span>
+                </button>
+                
+                <button class="message-btn" onclick="sendMessage('This brought back so many feelings...')">
+                    <i class="fas fa-history"></i>
+                    <span>"This brought back feelings"</span>
+                </button>
+            </div>
+
+            <div style="margin-top: 40px; padding: 25px; background: #f8f9fa; border-radius: 15px;">
+                <p style="color: var(--dark); font-weight: 600; margin-bottom: 15px;">
+                    Looking back, I realize how lucky I was to have you.
+                </p>
+                <p style="color: #666;">
+                    And I'd be even luckier to have another chance with someone as special as you.
+                </p>
+            </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div style="text-align: center; margin: 50px 0;">
+            <button onclick="sendMessage('I went through our journey site. I want to see where this goes.')" 
+                    style="background: linear-gradient(45deg, var(--primary), var(--secondary)); 
+                           color: white; 
+                           border: none; 
+                           padding: 20px 50px; 
+                           border-radius: 50px; 
+                           font-size: 1.2rem; 
+                           font-weight: 600; 
+                           cursor: pointer; 
+                           transition: var(--transition);
+                           box-shadow: var(--shadow);
+                           display: inline-flex;
+                           align-items: center;
+                           gap: 15px;">
+                <i class="fas fa-paper-plane"></i>
+                Let's Start A New Chapter
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                Created with <span class="heart">❤️</span> for Mama
+            </p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">
+                Every memory with you is worth remembering
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // WhatsApp Configuration
+        const whatsappNumber = "2348123456789"; // REPLACE WITH YOUR NUMBER
+
+        // Send WhatsApp message function
+        function sendMessage(text) {
+            const message = `Hi Mama, I just went through our journey website. ${text}`;
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+            
+            // Add click effect
+            event.target.classList.add('click-effect');
+            setTimeout(() => {
+                event.target.classList.remove('click-effect');
+            }, 300);
+        }
+
+        // Question answer handler
+        function selectOption(button, isCorrect) {
+            const options = document.querySelectorAll('.option-btn');
+            const revealDiv = document.getElementById('answerReveal');
+            
+            // Reset all options
+            options.forEach(opt => {
+                opt.disabled = true;
+                opt.style.opacity = '0.7';
+            });
+            
+            // Show correct/wrong state
+            if (isCorrect) {
+                button.classList.add('correct');
+                button.innerHTML = '<i class="fas fa-check"></i> Correct! During lessons';
+                
+                // Show reveal message
+                revealDiv.style.display = 'block';
+                
+                // Add celebration effect
+                createConfetti();
+            } else {
+                button.style.background = 'rgba(244, 67, 54, 0.8)';
+                button.style.borderColor = '#f44336';
+                button.innerHTML = '<i class="fas fa-times"></i> Not quite';
+                
+                // Show correct answer after delay
+                setTimeout(() => {
+                    document.getElementById('correctOption').classList.add('correct');
+                    document.getElementById('correctOption').innerHTML = '<i class="fas fa-star"></i> The correct answer';
+                    revealDiv.style.display = 'block';
+                }, 1000);
+            }
+            
+            // Add click effect
+            button.classList.add('click-effect');
+            setTimeout(() => {
+                button.classList.remove('click-effect');
+            }, 300);
+        }
+
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#8A2BE2', '#FF6B8B', '#00CED1', '#FFD700'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = ['✨', '🎉', '💕', '🥳'][Math.floor(Math.random() * 4)];
+                confetti.style.position = 'fixed';
+                confetti.style.fontSize = Math.random() * 20 + 15 + 'px';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-50px';
+                confetti.style.opacity = '0.9';
+                confetti.style.zIndex = '9999';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.userSelect = 'none';
+                
+                document.body.appendChild(confetti);
+                
+                // Animation
+                const duration = Math.random() * 3000 + 2000;
+                const horizontal = Math.random() * 200 - 100;
+                
+                confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(100vh) translateX(${horizontal}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: duration,
+                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                });
+                
+                // Remove after animation
+                setTimeout(() => confetti.remove(), duration);
+            }
+        }
+
+        // Page load animations
+        window.addEventListener('load', () => {
+            // Fade in
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Animate timeline items sequentially
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(30px)';
+                    item.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 300);
+            });
+            
+            // Warning if WhatsApp number not changed
+            if (whatsappNumber === "2349136989042") {
+                console.warn("⚠️ IMPORTANT: Replace the WhatsApp number with your actual number!");
+                console.warn("Format: country code + number (e.g., 2348123456789 for Nigeria)");
+            }
+        });
+
+        // Add hover effect to memory cards
+        document.querySelectorAll('.memory-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
