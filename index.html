@@ -316,6 +316,117 @@
             font-size: 1.2rem;
         }
 
+        /* Continue Memories Section */
+        .continue-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(45deg, var(--primary), var(--secondary), var(--accent)) border-box;
+        }
+
+        .continue-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .continue-text {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .continue-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .continue-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .continue-btn:hover::before {
+            left: 100%;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.3);
+        }
+
+        /* Future Memories Preview */
+        .future-memories {
+            display: none;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(138, 43, 226, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            animation: fadeIn 0.8s ease;
+        }
+
+        .future-memories.show {
+            display: block;
+        }
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .future-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .future-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .future-emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
         /* Decorative Elements */
         .floating-element {
             position: fixed;
@@ -393,9 +504,23 @@
             .question-section {
                 padding: 30px 20px;
             }
+            
+            .continue-section {
+                padding: 30px 20px;
+            }
+            
+            .continue-btn {
+                padding: 18px 40px;
+                font-size: 1.1rem;
+            }
         }
 
-        /* Micro-interactions */
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .click-effect {
             animation: clickPop 0.3s ease;
         }
@@ -546,6 +671,58 @@
             </div>
         </div>
 
+        <!-- Continue Our Memories Section -->
+        <div class="continue-section">
+            <h2>What's Next?</h2>
+            <p class="continue-text">
+                We've looked back at beautiful memories. But every great story has more chapters to write.
+            </p>
+            
+            <button class="continue-btn" id="continueMemoriesBtn">
+                <i class="fas fa-plus-circle"></i>
+                Continue Our Memories, Shall We?
+            </button>
+
+            <!-- Future Memories Preview -->
+            <div class="future-memories" id="futureMemories">
+                <p style="font-size: 1.1rem; color: var(--primary); margin-bottom: 20px; font-weight: 600;">
+                    <i class="fas fa-crystal-ball"></i> Memories Waiting to Be Made
+                </p>
+                
+                <div class="future-grid">
+                    <div class="future-card">
+                        <div class="future-emoji">🌅</div>
+                        <h4>Sunrise Breakfasts</h4>
+                        <p style="font-size: 0.9rem; color: #666;">Starting days together</p>
+                    </div>
+                    
+                    <div class="future-card">
+                        <div class="future-emoji">🎬</div>
+                        <h4>Movie Nights</h4>
+                        <p style="font-size: 0.9rem; color: #666;">Your head on my shoulder</p>
+                    </div>
+                    
+                    <div class="future-card">
+                        <div class="future-emoji">🌙</div>
+                        <h4>Late Night Talks</h4>
+                        <p style="font-size: 0.9rem; color: #666;">Under the stars again</p>
+                    </div>
+                    
+                    <div class="future-card">
+                        <div class="future-emoji">🎉</div>
+                        <h4>New Celebrations</h4>
+                        <p style="font-size: 0.9rem; color: #666;">More reasons to smile</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 20px; background: white; border-radius: 10px;">
+                    <p style="color: var(--dark); font-style: italic;">
+                        "The best memories are the ones we haven't made yet."
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- WhatsApp Section -->
         <div class="whatsapp-section">
             <div class="whatsapp-header">
@@ -568,9 +745,9 @@
                     <span>"You remembered everything"</span>
                 </button>
                 
-                <button class="message-btn" onclick="sendMessage('Can we talk about this?')">
-                    <i class="fas fa-comment"></i>
-                    <span>"We need to talk"</span>
+                <button class="message-btn" onclick="sendMessage('I want to create more memories with you')">
+                    <i class="fas fa-plus"></i>
+                    <span>"Let's make new memories"</span>
                 </button>
                 
                 <button class="message-btn" onclick="sendMessage('This brought back so many feelings...')">
@@ -679,6 +856,71 @@
             }, 300);
         }
 
+        // Continue Memories Button Handler
+        document.getElementById('continueMemoriesBtn').addEventListener('click', function() {
+            const futureMemories = document.getElementById('futureMemories');
+            
+            // Toggle display with animation
+            if (futureMemories.classList.contains('show')) {
+                futureMemories.classList.remove('show');
+                this.innerHTML = '<i class="fas fa-plus-circle"></i> Continue Our Memories, Shall We?';
+            } else {
+                futureMemories.classList.add('show');
+                this.innerHTML = '<i class="fas fa-minus-circle"></i> Hide Future Memories';
+                
+                // Scroll to the section
+                futureMemories.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Add celebration effect
+                createSparkles();
+                
+                // Change button gradient
+                this.style.background = 'linear-gradient(45deg, var(--accent), var(--secondary))';
+            }
+            
+            // Add click effect
+            this.classList.add('click-effect');
+            setTimeout(() => {
+                this.classList.remove('click-effect');
+            }, 300);
+        });
+
+        // Sparkles animation
+        function createSparkles() {
+            const sparkles = ['✨', '🌟', '💫', '⭐', '🎇'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = sparkles[Math.floor(Math.random() * sparkles.length)];
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.fontSize = Math.random() * 25 + 20 + 'px';
+                    sparkle.style.left = Math.random() * 100 + 'vw';
+                    sparkle.style.top = Math.random() * 100 + 'vh';
+                    sparkle.style.opacity = '0.8';
+                    sparkle.style.zIndex = '9999';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.userSelect = 'none';
+                    sparkle.style.transform = 'scale(0)';
+                    
+                    document.body.appendChild(sparkle);
+                    
+                    // Animation
+                    sparkle.animate([
+                        { transform: 'scale(0) rotate(0deg)', opacity: 0 },
+                        { transform: 'scale(1) rotate(360deg)', opacity: 1 },
+                        { transform: 'scale(0) rotate(720deg)', opacity: 0 }
+                    ], {
+                        duration: 1500,
+                        easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                    });
+                    
+                    // Remove after animation
+                    setTimeout(() => sparkle.remove(), 1500);
+                }, i * 50);
+            }
+        }
+
         // Confetti effect
         function createConfetti() {
             const colors = ['#8A2BE2', '#FF6B8B', '#00CED1', '#FFD700'];
@@ -739,7 +981,7 @@
             });
             
             // Warning if WhatsApp number not changed
-            if (whatsappNumber === "2349136989042") {
+            if (whatsappNumber === "2348123456789") {
                 console.warn("⚠️ IMPORTANT: Replace the WhatsApp number with your actual number!");
                 console.warn("Format: country code + number (e.g., 2348123456789 for Nigeria)");
             }
@@ -753,20 +995,6 @@
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
             });
         });
     </script>
